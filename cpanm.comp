@@ -1,0 +1,31 @@
+CompleteShell v0.2
+
+N cpanm
+
+# U '$0 [options] Module [...]'
+
+O --verbose              ..'Turns on chatty output'
+O --quiet                ..'Turns off the most output'
+O --interactive          ..'Turns on interactive configure (required for Task:: modules)'
+O --force                ..'Force install'
+O --notest               ..'Do not run unit tests'
+O --test-only            ..'Run tests only, do not install'
+O --sudo                 ..'Use sudo to run install commands'
+O --installdeps          ..'Only install dependencies'
+O --showdeps             ..'Only display direct dependencies'
+O --reinstall            ..'Reinstall the distribution even if you already have the latest version'
+O --mirror =str          ..'Specify the base URL for the mirror (e.g. http://cpan.cpantesters.org/)'
+O --mirror-only =str     .."Use the mirror's index file instead of the CPAN Meta DB"
+O --from =str            ..'Use only this mirror base URL and its index file'
+O --prompt               ..'Prompt when configure/build/test fails'
+O --local-lib =str       ..'Specify the install base to install modules'
+O --local-lib-contained =str ..'Specify the install base to install all non-core modules'
+O --self-contained       .."Install all non-core modules, even if they're already installed."
+O --auto-cleanup =str    .."Number of days that cpanm's work directories expire in. Defaults to 7"
+O --self-upgrade         ..'Upgrade cpanm itself'
+O --info                 ..'Displays distribution info on CPAN'
+O --look                 ..'Opens the distribution with your SHELL'
+O --uninstall            ..'Uninstalls the modules (EXPERIMENTAL)'
+O --version              ..'Displays software version'
+
+A +cpan-module
