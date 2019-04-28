@@ -1,20 +1,13 @@
 cpan-module() {
-  dir=${PERL_CPANM_HOME:-$HOME/.cpanm}
-
-  [[ -d $dir ]] || {
+  command -v cpanm >/dev/null || {
     hint "Can't find cpanm home directory. Set PERL_CPANM_HOME."
     return 0
   }
 
-  dir=${dir%/}/sources
-  [[ -d $dir ]] || {
-    hint "No directory '$dir/'. Try 'cpanm --mirror-only http://cpan.cpantesters.org/ Acme'."
-    return 0
-  }
-
-  packages=$(find $dir -name 02packages.details.txt)
-  [[ $packages ]] || {
-    hint "Can't find '02packages.details.txt' in '$dir'. Try 'cpanm --mirror-only http://cpan.cpantesters.org/ Acme'."
+  modules=$COMPLETE_SHELL_CACHE/cpanm
+  [[ -f $modules ]] || {
+    hint "Can't find CPAN modules cache file: '$modules'."
+    hint "Try 'complete-shell install cpanm'."
     return 0
   }
 
@@ -22,5 +15,13 @@ cpan-module() {
   _init_completion -n : || return 0
   echo "$ comp_word='$cur'"
 
-  tail -n+10 "$packages" | cut -d' ' -f1 | grep "^$cur" | head -n2000
+  if command -v fzf >/dev/null; then
+    ( grep "^$cur" < "$modules" ) |
+      fzf --multi --layout=reverse |
+      xargs
+
+  else
+    ( grep "^$cur" < "$modules" ) |
+      head -n2000
+  fi
 }

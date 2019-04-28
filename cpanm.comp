@@ -28,4 +28,15 @@ O --look                 ..'Opens the distribution with your SHELL'
 O --uninstall            ..'Uninstalls the modules (EXPERIMENTAL)'
 O --version              ..'Displays software version'
 
+# XXX should be: 'A +cpan-module...'
+A +cpan-module
+A +cpan-module
+A +cpan-module
+A +cpan-module
+A +cpan-module
+A +cpan-module
+A +cpan-module
+A +cpan-module
+A +cpan-module
+A +cpan-module
 A +cpan-module
