@@ -11,17 +11,13 @@ cpan-module() {
     return 0
   }
 
-  local cur prev words cword
-  _init_completion -n : || return 0
-  echo "$ comp_word='$cur'"
+  local fzf_options=(
+    --layout=reverse
+    --multi
+    --height=0
+    --color=bw
+    --bind=space:toggle-down,ctrl-space:up+toggle,del:deselect-all+top
+  )
 
-  if command -v fzf >/dev/null; then
-    ( grep "^$cur" < "$modules" ) |
-      fzf --multi --layout=reverse |
-      xargs
-
-  else
-    ( grep "^$cur" < "$modules" ) |
-      head -n2000
-  fi
+  (echo; cat "$modules") | complete-shell-pager-selector
 }

@@ -1,16 +1,22 @@
 #!/bin/bash
 
-PERL_CPANM_HOME=$COMPLETE_SHELL_TEMP/cpanm
-packages_file=$PERL_CPANM_HOME/sources/http%www.cpan.org/02packages.details.txt
-cpanm_modules_file=$COMPLETE_SHELL_CACHE/cpanm
+set -eu -o pipefail
 
-export PERL_CPANM_HOME
-
-cpanm --mirror-only CompleteShellDummy &>/dev/null
+input_url=https://www.cpan.org/modules/02packages.details.txt
+output_file=$COMPLETE_SHELL_CACHE/cpanm
 
 echo "Fetching '02packages.details.txt' CPAN modules list."
+
 (
-  tail -n+10 "$packages_file" |
-    cut -d' ' -f1 \
-    > "$cpanm_modules_file" &
-) &>/dev/null
+  if command -v curl >/dev/null; then
+    curl -s "$input_url"
+  elif command -v wget >/dev/null; then
+    wget --quiet -O - "$input_url"
+  else
+    echo "Install error: need 'wget' or 'curl' to fetch '$input_url'"
+    exit 1
+  fi
+) |
+  tail -n+10 |
+  cut -d' ' -f1 \
+> "$output_file" &

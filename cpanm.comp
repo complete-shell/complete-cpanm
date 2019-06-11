@@ -1,6 +1,6 @@
 CompleteShell v0.2
 
-N cpanm
+N cpanm v0.0.1 ..'Install modules from CPAN'
 
 # U '$0 [options] Module [...]'
 
@@ -28,15 +28,4 @@ O --look                 ..'Opens the distribution with your SHELL'
 O --uninstall            ..'Uninstalls the modules (EXPERIMENTAL)'
 O --version              ..'Displays software version'
 
-# XXX should be: 'A +cpan-module...'
-A +cpan-module
-A +cpan-module
-A +cpan-module
-A +cpan-module
-A +cpan-module
-A +cpan-module
-A +cpan-module
-A +cpan-module
-A +cpan-module
-A +cpan-module
-A +cpan-module
+A +cpan-module...
