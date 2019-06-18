@@ -19,5 +19,5 @@ cpan-module() {
     --bind=space:toggle-down,ctrl-space:up+toggle,del:deselect-all+top
   )
 
-  (echo; cat "$modules") | complete-shell-pager-selector
+  (echo; cat "$modules") | complete-shell-pager
 }
