@@ -1,8 +1,9 @@
 CompleteShell v0.2
 
 N cpanm v0.0.1 ..'Install modules from CPAN'
+M tags perl perl5 cpan
 
-# U '$0 [options] Module [...]'
+U '$0 [options] Module [...]'
 
 O --verbose              ..'Turns on chatty output'
 O --quiet                ..'Turns off the most output'
